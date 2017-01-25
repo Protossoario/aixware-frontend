@@ -3,6 +3,8 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
+import { environment } from '../environments/environment';
+
 @Injectable()
 export class AuthService {
     public token: string;
@@ -15,7 +17,7 @@ export class AuthService {
     login(username: string, password: string): Observable<boolean> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post('http://localhost:3000/api/authenticate', { username: username, password: password }, options)
+        return this.http.post(environment.apiURL + '/authenticate', { username: username, password: password }, options)
             .map((response: Response) => {
                 let data = response.json().data;
                 let token = data.token;

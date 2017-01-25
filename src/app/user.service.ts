@@ -3,6 +3,8 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
+import { environment } from '../environments/environment';
+
 import { AuthService } from './auth.service';
 import { User } from './user';
 
@@ -15,7 +17,7 @@ export class UserService {
     getUsers(): Observable<User[]> {
         let headers = new Headers({ 'x-access-token': this.authService.token });
         let options = new RequestOptions({ headers: headers });
-        return this.http.get('http://localhost:3000/api/users', options)
+        return this.http.get(environment.apiURL + '/users', options)
             .map((response: Response) => response.json().data);
     }
 }
