@@ -9,14 +9,14 @@ import { UserService } from '../user.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    users: User[] = [];
+  users: User[] = [];
 
-    constructor(private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
-    ngOnInit() {
-        this.userService.getUsers()
-            .subscribe(users => {
-                this.users = users;
-            });
-    }
+  ngOnInit() {
+    this.userService.getUsers()
+      .subscribe(users => {
+        this.users = users;
+      });
+  }
 }

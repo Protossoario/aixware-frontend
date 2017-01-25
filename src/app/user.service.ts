@@ -11,13 +11,13 @@ import { User } from './user';
 @Injectable()
 export class UserService {
     constructor(
-        private http: Http,
-        private authService: AuthService) {}
+      private http: Http,
+      private authService: AuthService) { }
 
     getUsers(): Observable<User[]> {
-        let headers = new Headers({ 'x-access-token': this.authService.token });
-        let options = new RequestOptions({ headers: headers });
-        return this.http.get(environment.apiURL + '/users', options)
-            .map((response: Response) => response.json().data);
+      let headers = new Headers({ 'x-access-token': this.authService.token });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.get(environment.apiURL + '/users', options)
+        .map((response: Response) => response.json().data);
     }
 }
