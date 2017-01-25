@@ -4,11 +4,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-// Required mock backend dependencies
-import { mockAuthProvider } from './_mocks/auth.mock';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
-
 // Guards
 import { AuthGuard } from './auth.guard';
 
@@ -39,11 +34,7 @@ import { LoginComponent } from './login/login.component';
     providers: [
         AuthGuard,
         AuthService,
-        UserService,
-        // Mock auth backend
-        mockAuthProvider,
-        MockBackend,
-        BaseRequestOptions
+        UserService
     ],
     bootstrap: [AppComponent]
 })

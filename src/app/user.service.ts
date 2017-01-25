@@ -13,9 +13,9 @@ export class UserService {
         private authService: AuthService) {}
 
     getUsers(): Observable<User[]> {
-        let headers = new Headers({ 'Authorization': 'Bearer ' + this.authService.token });
+        let headers = new Headers({ 'x-access-token': this.authService.token });
         let options = new RequestOptions({ headers: headers });
-        return this.http.get('/api/users', options)
-            .map((response: Response) => response.json());
+        return this.http.get('http://localhost:3000/api/users', options)
+            .map((response: Response) => response.json().data);
     }
 }

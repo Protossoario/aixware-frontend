@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
@@ -13,9 +13,12 @@ export class AuthService {
     }
 
     login(username: string, password: string): Observable<boolean> {
-        return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post('http://localhost:3000/api/authenticate', { username: username, password: password }, options)
             .map((response: Response) => {
-                let token = response.json() && response.json().token;
+                let data = response.json().data;
+                let token = data.token;
                 if (token) {
                     this.token = token;
                     localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
@@ -23,6 +26,17 @@ export class AuthService {
                 } else {
                     return false;
                 }
+            })
+            .catch((err: Response | any) => {
+                let errMsg: string;
+                if (err instanceof Response) {
+                    const body = err.json() || '';
+                    const error = body.error || JSON.stringify(body);
+                    errMsg = error.messages.join('. ');
+                } else {
+                    errMsg = err.message ? err.message : err.toString();
+                }
+                return Observable.throw(errMsg);
             });
     }
 
