@@ -10,6 +10,7 @@ import { AuthGuard } from './auth.guard';
 // Services
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
+import { UnitStatusService } from './unit-status.service';
 
 // Routes
 import { routing } from './app.routing';
@@ -36,7 +37,8 @@ import { UnitStatusComponent } from './unit-status/unit-status.component';
   providers: [
     AuthGuard,
     AuthService,
-    UserService
+    UserService,
+    UnitStatusService
   ],
   bootstrap: [AppComponent]
 })
