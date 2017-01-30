@@ -1,7 +1,7 @@
-<div class="jumbotron">
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+<div *ngIf="currentUser">
+    <app-navbar></app-navbar>
+    <app-unit-list></app-unit-list>
+</div>
+<div class="app-content">
+    <router-outlet></router-outlet>
 </div>

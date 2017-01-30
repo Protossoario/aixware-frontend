@@ -1,0 +1,6 @@
+<div class="unit-list">
+  <ul>
+    <li *ngFor="let unit of units">{{ unit.name }}</li>
+  </ul>
+  <p *ngIf="units.length === 0">No hay unidades registradas.</p>
+</div>

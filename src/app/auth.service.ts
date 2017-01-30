@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import 'rxjs/add/operator/map';
 
 import { environment } from '../environments/environment';
 
+import { User } from './user';
+
 @Injectable()
 export class AuthService {
   public token: string;
+  private currentUserSource = new BehaviorSubject<User>(null);
+  public currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: Http) {
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
+    this.currentUserSource.next(currentUser);
   }
+
 
   login(username: string, password: string): Observable<boolean> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -23,6 +29,7 @@ export class AuthService {
         let token = data.token;
         if (token) {
           this.token = token;
+          this.currentUserSource.next(data);
           localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
           return true;
         } else {
@@ -44,6 +51,8 @@ export class AuthService {
 
   logout(): void {
     this.token = null;
+    this.currentUserSource.next(null);
     localStorage.removeItem('currentUser');
   }
+
 }

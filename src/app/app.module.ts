@@ -10,6 +10,7 @@ import { AuthGuard } from './auth.guard';
 // Services
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
+import { UnitService } from './unit.service';
 import { UnitStatusService } from './unit-status.service';
 
 // Routes
@@ -20,13 +21,19 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { UnitStatusComponent } from './unit-status/unit-status.component';
+import { UnitListComponent } from './unit-list/unit-list.component';
+import { UnitAddComponent } from './unit-add/unit-add.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    UnitStatusComponent
+    UnitStatusComponent,
+    UnitListComponent,
+    UnitAddComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +45,7 @@ import { UnitStatusComponent } from './unit-status/unit-status.component';
     AuthGuard,
     AuthService,
     UserService,
+    UnitService,
     UnitStatusService
   ],
   bootstrap: [AppComponent]
