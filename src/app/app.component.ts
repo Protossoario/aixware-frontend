@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.subscription = this.authService.currentUser$
+    this.subscription = this.authService.currentUserStream
       .subscribe((user) => this.currentUser = user)
   }
 

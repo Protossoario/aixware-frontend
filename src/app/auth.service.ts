@@ -11,7 +11,9 @@ import { User } from './user';
 export class AuthService {
   public token: string;
   private currentUserSource = new BehaviorSubject<User>(null);
-  public currentUser$ = this.currentUserSource.asObservable();
+  // BehaviorSubject allows us to return an Observable for the current user stream
+  // This enables any component to subscribe to currentUserStream and listen for changes to it
+  public currentUserStream = this.currentUserSource.asObservable();
 
   constructor(private http: Http) {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -41,7 +43,7 @@ export class AuthService {
         if (err instanceof Response) {
           const body = err.json() || '';
           const error = body.error || JSON.stringify(body);
-          errMsg = error.messages.join('. ');
+          errMsg = error.messages.join(' ');
         } else {
           errMsg = err.message ? err.message : err.toString();
         }
