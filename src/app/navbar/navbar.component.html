@@ -1,9 +1,35 @@
-<div class="app-navbar">
-    <a class="app-navbar-brand">Asistente de detección de fatiga</a>
-    <ul class="app-navbar-items-list" routerLinkActive="active">
-        <li class="app-navbar-item"><a class="app-navbar-link" routerLink="/">Unidades</a></li>
-        <li class="app-navbar-item"><a class="app-navbar-link">Añadir usuario</a></li>
-        <li class="app-navbar-item"><a class="app-navbar-link" routerLink="unidad">Añadir unidad</a></li>
-        <li class="app-navbar-item"><a class="app-navbar-link" routerLink="login">Cerrar sesión</a></li>
-    </ul>
+<div class="app-navbar navbar-dark-theme">
+    <md-toolbar color="primary">
+        <div class="app-navbar-brand">
+            <div class="app-navbar-brand-content">Asistente de detección de fatiga</div>
+        </div>
+        <span class="fill-horizontal-space"></span>
+        <a
+            md-raised-button
+            color="accent"
+            routerLink="/"
+            class="app-navbar-item">
+                <md-icon>directions_car</md-icon>
+                Unidades</a>
+        <a
+            md-raised-button
+            color="accent"
+            class="app-navbar-item">
+                <md-icon>person_add</md-icon>
+                Añadir usuario</a>
+        <a
+            md-raised-button
+            color="accent"
+            routerLink="unidad"
+            class="app-navbar-item">
+                <md-icon>add_circle</md-icon>
+                Añadir unidad</a>
+        <a
+            md-raised-button
+            color="accent"
+            routerLink="login"
+            class="app-navbar-item">
+                <md-icon>exit_to_app</md-icon>
+                Cerrar sesión</a>
+    </md-toolbar>
 </div>

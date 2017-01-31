@@ -6,11 +6,11 @@ import { AuthService } from './auth.service';
 describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthServiceService]
+      providers: [AuthService]
     });
   });
 
-  it('should ...', inject([AuthServiceService], (service: AuthServiceService) => {
+  it('should ...', inject([AuthService], (service: AuthService) => {
     expect(service).toBeTruthy();
   }));
 });
