@@ -23,13 +23,13 @@ export class UnitAddComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.unitService.postUnit(this.model)
-      .subscribe((unit) => {
-        this.router.navigate(['/']);
-      }, (error) => {
+    this.unitService.create(this.model)
+      .subscribe((data) => {
         this.submitted = false;
-        this.errMsg = error;
-      });
+        this.router.navigate(['/']);
+      }, (err) => {
+        this.errMsg = err;
+      })
   }
 
 }

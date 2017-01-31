@@ -14,10 +14,11 @@ export class UnitListComponent implements OnInit {
   constructor(private unitService: UnitService) { }
 
   ngOnInit() {
-    this.unitService.getUnits()
+    this.unitService.units
       .subscribe((units) => {
         this.units = units;
       });
+    this.unitService.loadAll();
   }
 
 }
