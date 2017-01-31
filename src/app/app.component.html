@@ -1,7 +1,9 @@
-<div *ngIf="currentUser">
-    <app-navbar></app-navbar>
-    <app-unit-list></app-unit-list>
-</div>
-<div class="app-content">
-    <router-outlet></router-outlet>
+<div class="app-root">
+    <div class="app-header" *ngIf="currentUser">
+        <app-navbar></app-navbar>
+    </div>
+    <div class="app-content">
+        <app-unit-list *ngIf="currentUser"></app-unit-list>
+        <router-outlet></router-outlet>
+    </div>
 </div>

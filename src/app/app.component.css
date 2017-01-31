@@ -1,0 +1,15 @@
+.app-root {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.app-header {
+    flex: 0 1 auto;
+}
+
+.app-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+}
