@@ -1,5 +1,6 @@
 .unit-list {
   width: 286px;
   background-color: #9e0b0f;
-  height: 100%;
+  flex: 1 1 auto;
+  min-height: 100%;
 }
