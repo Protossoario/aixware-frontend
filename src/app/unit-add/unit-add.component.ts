@@ -25,9 +25,9 @@ export class UnitAddComponent implements OnInit {
     this.submitted = true;
     this.unitService.create(this.model)
       .subscribe((data) => {
-        this.submitted = false;
         this.router.navigate(['/']);
       }, (err) => {
+        this.submitted = false;
         this.errMsg = err;
       })
   }

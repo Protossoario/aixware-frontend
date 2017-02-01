@@ -25,43 +25,38 @@ export class UnitService {
     return this.unitSource.asObservable();
   }
   
-  loadAll(): Observable<Unit[]> {
+  loadAll() {
     let headers = new Headers({ 'x-access-token': this.authService.token });
     let options = new RequestOptions({ headers: headers });
-    let request = this.http.get(environment.apiURL + '/units', options)
-      .map((response: Response) => response.json().data);
-    request
+    this.http.get(environment.apiURL + '/units', options)
+      .map((response: Response) => response.json().data)
       .catch(this.errorHandler)
       .subscribe((units) => {
         this.unitStore = units;
         this.unitSource.next(units);
-      }, (err: Response | any) => {
-        console.error('Could not load units: ');
-        console.error(err);
       });
-    return request;
   }
 
-  create(unit: Unit): Observable<Unit[]> {
+  create(unit: Unit): Observable<any> {
     let headers = new Headers({ 'x-access-token': this.authService.token });
     let options = new RequestOptions({ headers: headers });
-    let request = this.http.post(environment.apiURL + '/units', unit, options)
-      .map((response: Response) => response.json().data);
-    request
-      .catch(this.errorHandler)
-      .subscribe((unit) => {
+    let done = Observable.create();
+    return this.http.post(environment.apiURL + '/units', unit, options)
+      .map((response: Response) => {
+        const unit = response.json().data;
         this.unitStore.push(unit);
         this.unitSource.next(this.unitStore);
+        return Observable.empty();
       })
-    return request;
+      .catch(this.errorHandler);
   }
 
   errorHandler(err: Response | any) {
     let errMsg: string;
     if (err instanceof Response) {
       const body = err.json() || '';
-      const error = body.error || JSON.stringify(body);
-      errMsg = error.messages.join(' ');
+      const error = body.error.messages.join(' ') || JSON.stringify(body);
+      errMsg = error;
     } else {
       errMsg = err.message ? err.message : err.toString();
     }
