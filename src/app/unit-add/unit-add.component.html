@@ -1,20 +1,29 @@
-<div class="unit-add-form" [hidden]="submitted">
+<div [hidden]="submitted" class="unit-add-form">
+  <h4>Agregar unidad</h4>
   <form (ngSubmit)="onSubmit()" #unitForm="ngForm">
-    <div class="unit-form-group">
-      <label for="name">Nombre</label>
-      <input type="text" class="unit-form-text" id="name"
-        required
-        [(ngModel)]="model.name" name="name"
-        #name="ngModel">
+    <div class="form-group">
+      <p class="form-error">{{ errMsg }}</p>
+      <div class="form-input">
+        <md-input-container>
+          <input type="text" class="unit-form-text" id="name"
+            md-input
+            placeholder="Nombre"
+            required
+            [(ngModel)]="model.name" name="name"
+            #name="ngModel">
+        </md-input-container>
         <div [hidden]="name.valid || name.pristine"
           class="form-error">
           El nombre es requerido.
         </div>
+      </div>
+      <button
+        md-raised-button
+        type="submit"
+        [disabled]="!unitForm.form.valid">Agregar</button>
     </div>
-    <p class="form-error">{{ errMsg }}</p>
-    <button type="submit" class="form-button" [disabled]="!unitForm.form.valid">Agregar</button>
   </form>
 </div>
-<div class="loading" [hidden]="!submitted">
-  <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+<div class="spinner" [hidden]="!submitted">
+  <md-spinner></md-spinner>
 </div>

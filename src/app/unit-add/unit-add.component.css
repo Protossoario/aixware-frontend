@@ -1,0 +1,27 @@
+.unit-add-form {
+    width: 100%;
+}
+
+.unit-add-form > h4 {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    margin: 5px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    width: 50%;
+}
+
+.form-group > button {
+    margin-left: auto;
+}
+
+.form-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}

@@ -1,15 +1,23 @@
 @import '~@angular/material/core/theming/all-theme';
 @include md-core();
 $primary: md-palette($md-red, 900);
-$accent:  md-palette($md-grey, 800, A100, A400);
+$accent:  md-palette($md-grey, 800, 500, 900);
 $warn:    md-palette($md-amber, 600);
 $theme:   md-dark-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
 
 .navbar-dark-theme {
   $nav-primary: md-palette($md-grey, 800);
-  $nav-accent: md-palette($md-grey, 700, 400, 900);
-  $nav-warn: md-palette($md-deep-orange);
-  $dark-theme: md-dark-theme($nav-primary, $nav-accent, $nav-warn);
+  $nav-accent:  md-palette($md-grey, 700, 400, 900);
+  $nav-warn:    md-palette($md-deep-orange);
+  $dark-theme:  md-dark-theme($nav-primary, $nav-accent, $nav-warn);
   @include angular-material-theme($dark-theme);
+}
+
+.app-content-main {
+  $main-primary:  $primary;
+  $main-accent:   $accent;
+  $main-warn:     $warn;
+  $main-theme:    md-light-theme($main-primary, $main-accent, $main-warn);
+  @include angular-material-theme($main-theme);
 }

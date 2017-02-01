@@ -13,3 +13,10 @@
     display: flex;
     flex-direction: row;
 }
+
+.app-content-main {
+    margin-left: 23px;
+    margin-top: 30px;
+    margin-right: 23px;
+    flex: 1 1 auto;
+}

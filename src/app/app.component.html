@@ -4,6 +4,8 @@
     </div>
     <div class="app-content">
         <app-unit-list *ngIf="currentUser"></app-unit-list>
-        <router-outlet></router-outlet>
+        <div class="app-content-main">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
