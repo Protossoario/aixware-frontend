@@ -25,3 +25,9 @@
     flex-direction: column;
     padding-bottom: 10px;
 }
+
+.form-error {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    /* Material Deep Orange 900 */
+    color: #BF360C;
+}

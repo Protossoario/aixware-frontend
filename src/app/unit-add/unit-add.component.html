@@ -5,7 +5,7 @@
       <p class="form-error">{{ errMsg }}</p>
       <div class="form-input">
         <md-input-container>
-          <input type="text" class="unit-form-text" id="name"
+          <input type="text" id="name"
             md-input
             placeholder="Nombre"
             required
@@ -16,6 +16,38 @@
           class="form-error">
           El nombre es requerido.
         </div>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input type="text" id="licensePlate"
+            md-input
+            placeholder="Placas"
+            required
+            [(ngModel)]="model.licensePlate" name="licensePlate"
+            #licensePlate="ngModel">
+        </md-input-container>
+        <div [hidden]="licensePlate.valid || licensePlate.pristine"
+          class="form-error">
+          Las placas son requeridas.
+        </div>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input type="text" id="year"
+            md-input
+            placeholder="Año de la unidad"
+            [(ngModel)]="model.year" name="year"
+            #year="ngModel">
+        </md-input-container>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input type="text" id="make"
+            md-input
+            placeholder="Modelo"
+            [(ngModel)]="model.make" name="make"
+            #make="ngModel">
+        </md-input-container>
       </div>
       <button
         md-raised-button
