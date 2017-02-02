@@ -1,22 +1,19 @@
 .app-root {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 }
 
 .app-header {
-    flex: 0 1 auto;
+  flex: 0 1 auto;
 }
 
 .app-content {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: row;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
 }
 
 .app-content-main {
-    margin-left: 23px;
-    margin-top: 30px;
-    margin-right: 23px;
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }

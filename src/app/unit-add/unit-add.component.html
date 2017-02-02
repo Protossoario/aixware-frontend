@@ -2,7 +2,7 @@
   <h4>Agregar unidad</h4>
   <form (ngSubmit)="onSubmit()" #unitForm="ngForm">
     <div class="form-group">
-      <p class="form-error">{{ errMsg }}</p>
+      <p *ngIf="errMsg" class="form-error">{{ errMsg }}</p>
       <div class="form-input">
         <md-input-container>
           <input type="text" id="name"

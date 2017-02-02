@@ -1,6 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Roboto Thin";
+  src: url("/assets/Roboto/Roboto-Thin.ttf");
+}
+@font-face {
+  font-family: "Roboto Light";
+  src: url("/assets/Roboto/Roboto-Light.ttf");
+}
 
 html, body {
   height: 100%;
   margin: 0;
+}
+
+html * {
+  font-family: Roboto;
+  font-weight: 300;
 }

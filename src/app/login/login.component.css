@@ -1,0 +1,125 @@
+.login-title {
+  background-color: rgba(0, 0, 0, .30);
+  position: absolute;
+  top: 200px;
+  max-width: 550px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 42px;
+  line-height: 50px;
+  padding: 21px 25px 21px 27px;
+}
+.login-title > h2 {
+  font-weight: 100;
+  margin: 0;
+}
+img.background {
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: -1;
+}
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.background {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
+.login-form {
+  position: absolute;
+  top: 200px;
+  left: 658px;
+  color: #fdfdfd;
+  background-color: rgba(0, 0, 0, .80);
+  min-width: 325px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  justify-content: center;
+}
+form button {
+  display: flex;
+  margin-left: auto;
+  justify-content: center;
+}
+.form-input {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-bottom: 5px;
+}
+.form-error {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 10pt;
+  margin: 0;
+  color: #FF8A65;
+}
+.spinner {
+  display: flex;
+  background-color: rgba(0, 0, 0, .50);
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+.login-footer-container {
+  border: 5px solid rgba(0, 0, 0, 0.3);
+  border-left: 0;
+  border-right: 0;
+  overflow: hidden;
+  position: absolute;
+  bottom: 42px;
+  min-width: 100%;
+}
+.login-footer {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(158, 11, 15, 0.3);
+}
+.login-logo {
+  position: fixed;
+  left: 0;
+  margin: 0;
+  width: 140px;
+  bottom: 27px;
+}
+.login-footer-left {
+  display: flex;
+  flex-direction: column;
+  padding-left: 149px;
+  padding-top: 15px;
+  padding-bottom: 20px;
+}
+.login-footer-left > h4, p {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #fdfdfd;
+  margin: 0;
+}
+.login-footer-left > h4 {
+  font-size: 22px;
+  line-height: 20px;
+  padding-bottom: 5px;
+}
+.login-footer-left > p {
+  font-weight: 100;
+  font-size: 14px;
+}
+.login-footer-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  justify-content: flex-end;
+  padding-bottom: 10px;
+}
+.login-footer-right > a {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #fdfdfd;
+  font-size: 16px;
+}

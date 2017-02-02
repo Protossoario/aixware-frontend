@@ -21,3 +21,11 @@ $theme:   md-dark-theme($primary, $accent, $warn);
   $main-theme:    md-light-theme($main-primary, $main-accent, $main-warn);
   @include angular-material-theme($main-theme);
 }
+
+.login-form {
+  $login-primary: md-palette($md-red, 900, 700, A700);
+  $login-accent:  md-palette($md-grey, 300, 50, 600);
+  $login-warn:    md-palette($md-red);
+  $login-theme:   md-dark-theme($login-accent, $login-accent, $login-warn);
+  @include angular-material-theme($login-theme);
+}
