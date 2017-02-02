@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { UnitStatusService } from '../unit-status.service';
 import { UnitStatus } from '../unit-status';
@@ -9,8 +9,8 @@ import { UnitStatus } from '../unit-status';
   styleUrls: ['./unit-status.component.css']
 })
 export class UnitStatusComponent implements OnInit {
+  @Input() unitId: string;
   statusData: string;
-  unitId: string = 'd6bb11188bcc1e0b946eade9';
 
   constructor(
     private unitStatusService: UnitStatusService
