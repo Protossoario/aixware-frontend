@@ -5,6 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 
+// Chart.js module for Angular2
+import { ChartsModule } from 'ng2-charts';
+
+// Google Maps for Angular2
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 // Guards
 import { AuthGuard } from './auth.guard';
 
@@ -41,6 +47,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
+    ChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCEc9SudbT0HNHF1oHsIcsubDo0jbvwgLs'
+    }),
     routing
   ],
   providers: [

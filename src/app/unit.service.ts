@@ -24,6 +24,16 @@ export class UnitService {
   get units(): Observable<Unit[]> {
     return this.unitSource.asObservable();
   }
+
+  getUnit(id): Observable<Unit> {
+    let unit = this.unitStore.find((unit) => unit._id === id);
+    if (unit) return Observable.of(unit);
+    let headers = new Headers({ 'x-access-token': this.authService.token });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(environment.apiURL + '/units/' + id, options)
+      .map((response: Response) => response.json().data)
+      .catch(this.errorHandler);
+  }
   
   loadAll() {
     let headers = new Headers({ 'x-access-token': this.authService.token });

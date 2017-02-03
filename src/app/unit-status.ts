@@ -1,9 +1,13 @@
 export class UnitStatus {
+    _id: string;
     latitude: number;
     longitude: number;
-    pictureWidth: number;
-    pictureHeight: number;
-    picturePath: string;
+    picture: {
+        width: number;
+        height: number;
+        url: string;
+    }
     acceleration: number;
     velocity: number;
+    createdAt: Date;
 }

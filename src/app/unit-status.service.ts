@@ -10,7 +10,6 @@ import { UnitStatus } from './unit-status';
 
 @Injectable()
 export class UnitStatusService {
-  private url = 'http://localhost:3000/';
   private socket;
 
   constructor(
@@ -19,9 +18,9 @@ export class UnitStatusService {
   ) { }
 
   getLiveStatusData(unitId): Observable<UnitStatus> {
-    let pollSubject = new Subject<any>();
+    let pollSubject = new Subject<UnitStatus>();
     let subscribeToNewRequest = () => {
-      this.getStatus(unitId).subscribe((res) => { pollSubject.next(res) });
+      this.getStatus(unitId).subscribe((res) => { pollSubject.next(res.json().data) });
     }
     pollSubject.delay(5000).subscribe(subscribeToNewRequest);
     subscribeToNewRequest();
@@ -31,8 +30,7 @@ export class UnitStatusService {
   getStatus(unitId) {
     let headers = new Headers({ 'x-access-token': this.authService.token });
     let options = new RequestOptions({ headers: headers });
-    return this.http.get(environment.apiURL + '/units/' + unitId + '/status', options)
-      .map((response: Response) => response.json().data);
+    return this.http.get(environment.apiURL + '/units/' + unitId + '/status', options);
   }
 
 }
