@@ -17,7 +17,7 @@ import { Unit } from '../unit';
 export class UnitStatusComponent implements OnInit {
   statusData: UnitStatus;
   statusPicturePath: string;
-  chartData: Array<number[]>;
+  chartData: number[]; 
   chartLabels: Array<any>;
   unit: Unit;
 
@@ -28,7 +28,7 @@ export class UnitStatusComponent implements OnInit {
     private unitService: UnitService
   ) {
     this.statusData = new UnitStatus;
-    this.chartData = [[]];
+    this.chartData = [];
     this.chartLabels = [];
   }
 
@@ -44,13 +44,15 @@ export class UnitStatusComponent implements OnInit {
         return this.unitStatusService.getLiveStatusData(unit._id)
       })
       .subscribe(data => {
-        console.log("Updating live!");
         if (!this.statusData || data._id !== this.statusData._id) {
-          this.chartData[0].push(data.acceleration);
+          this.chartData.push(data.acceleration);
           this.chartLabels.push(this.formatDate(new Date(data.createdAt)));
-          if (this.chartData.length > 5) {
-            this.chartData.shift();
-            this.chartLabels.shift();
+          if (this.chartLabels.length > 5) {
+            this.chartData = this.chartData.slice(1);
+            this.chartLabels = this.chartLabels.slice(1);
+          } else {
+            this.chartData = this.chartData.slice();
+            this.chartLabels = this.chartLabels.slice();
           }
           this.statusPicturePath = environment.baseURL + data.picture.url;
           this.statusData = data;

@@ -2,7 +2,7 @@
 <div class="unit-status-data" *ngIf="statusData">
   <div class="flex-row">
     <div class="status-picture-container">
-      <img [src]="statusPicturePath" class="status-picture" />
+      <img *ngIf="statusPicturePath" [src]="statusPicturePath" class="status-picture" />
     </div>
     <div class="status-map">
       <sebm-google-map [latitude]="statusData.latitude" [longitude]="statusData.longitude">
@@ -13,12 +13,11 @@
   <div class="status-acceleration">
     <h4 class="status-acceleration-heading">Cambio de la aceleración en la distancia recorrida</h4>
     <div class="status-acceleration-chart">
-      <canvas baseChart
+      <canvas baseChart class="chart"
         [data]="chartData"
         [labels]="chartLabels"
         [legend]='false'
-        [chartType]='"line"'></canvas>
+        [chartType]="'line'"></canvas>
     </div>
-    {{ chartLabels | json }}
   </div>
 </div>
