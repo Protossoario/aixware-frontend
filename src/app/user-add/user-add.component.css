@@ -1,0 +1,36 @@
+.user-add-form {
+  width: 100%;
+  margin-left: 23px;
+  margin-top: 30px;
+  margin-right: 23px;
+}
+
+.user-add-form > h4 {
+  font-family: "Roboto Thin", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  margin: 5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20%;
+  width: 50%;
+}
+
+.form-group > button {
+  margin-left: auto;
+}
+
+.form-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.form-error {
+  font-family: "Roboto Thin", "Helvetica Neue", sans-serif;
+  /* Material Deep Orange 900 */
+  color: #BF360C;
+}

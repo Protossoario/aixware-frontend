@@ -52,7 +52,6 @@ export class UnitService {
       }
       return units;
     }).subscribe((units) => {
-      console.log('Live from New York, it\'s unit status!');
       this.unitStore = units;
       this.unitSource.next(units);
     })
@@ -78,11 +77,38 @@ export class UnitService {
   create(unit: Unit): Observable<any> {
     let headers = new Headers({ 'x-access-token': this.authService.token });
     let options = new RequestOptions({ headers: headers });
-    let done = Observable.create();
     return this.http.post(environment.apiURL + '/units', unit, options)
       .map((response: Response) => {
         const unit = response.json().data;
         this.unitStore.push(unit);
+        this.unitSource.next(this.unitStore);
+        return Observable.empty();
+      })
+      .catch(this.errorHandler);
+  }
+
+  update(unit: Unit): Observable<any> {
+    let headers = new Headers({ 'x-access-token': this.authService.token });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.put(environment.apiURL + '/units/' + unit._id, unit, options)
+      .map((response: Response) => {
+        const unit = response.json().data;
+        const index = this.unitStore.findIndex(u => u._id === unit._id);
+        this.unitStore[index] = unit;
+        this.unitSource.next(this.unitStore);
+        return Observable.empty();
+      })
+      .catch(this.errorHandler);
+  }
+
+  delete(unit: Unit): Observable<any> {
+    let headers = new Headers({ 'x-access-token': this.authService.token });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.delete(environment.apiURL + '/units/' + unit._id, options)
+      .map((response: Response) => {
+        const unit = response.json().data;
+        const index = this.unitStore.findIndex(u => u._id === unit._id);
+        this.unitStore.splice(index, 1);
         this.unitSource.next(this.unitStore);
         return Observable.empty();
       })

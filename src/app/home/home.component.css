@@ -1,0 +1,7 @@
+.home {
+  width: 100%;
+}
+.home > h3 {
+    margin-left: 23px;
+    margin-top: 30px;
+}

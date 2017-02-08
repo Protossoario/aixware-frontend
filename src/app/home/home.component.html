@@ -1,11 +1,15 @@
 <div class="home">
-  <h1>Home</h1>
-  <p>Logged in!</p>
-  <div>
-    Users from api:
-    <ul>
-      <li *ngFor="let user of users">{{ user.firstName }} {{ user.lastName }}</li>
-    </ul>
-  </div>
-  <!--<app-unit-status></app-unit-status>-->
+  <h3>Unidades</h3>
+  <md-grid-list cols="4" rowHeight="3:2">
+    <md-grid-tile *ngFor="let unit of units" [colspan]="1" [rowspan]="1">
+      <md-card>
+        <md-card-title>{{ unit.name }}</md-card-title>
+        <md-card-subtitle>{{ unit._id }}</md-card-subtitle>
+        <md-card-actions>
+          <button md-button color="accent" (click)="onEdit(unit)">Editar</button>
+          <button md-button color="primary" (click)="onDelete(unit)">Borrar</button>
+        </md-card-actions>
+      </md-card>
+    </md-grid-tile>
+  </md-grid-list>
 </div>

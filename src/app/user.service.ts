@@ -18,6 +18,27 @@ export class UserService {
       let headers = new Headers({ 'x-access-token': this.authService.token });
       let options = new RequestOptions({ headers: headers });
       return this.http.get(environment.apiURL + '/users', options)
-        .map((response: Response) => response.json().data);
+        .map((response: Response) => response.json().data)
+        .catch(this.errorHandler);
+    }
+
+    create(user: User): Observable<any> {
+      let headers = new Headers({ 'x-access-token': this.authService.token });
+      let options = new RequestOptions({ headers: headers });
+      return this.http.post(environment.apiURL + '/users', user, options)
+        .map((response: Response) => response.json().data)
+        .catch(this.errorHandler);
+    }
+
+    errorHandler(err: Response | any): Observable<any> {
+      let errMsg: string;
+      if (err instanceof Response) {
+        const body = err.json() || '';
+        const error = body.error.messages.join(' ') || JSON.stringify(body);
+        errMsg = error;
+      } else {
+        errMsg = err.message ? err.message : err.toString();
+      }
+      return Observable.throw(errMsg);
     }
 }

@@ -29,7 +29,7 @@ export class UnitAddComponent implements OnInit {
       }, (err) => {
         this.submitted = false;
         this.errMsg = err;
-      })
+      });
   }
 
 }
