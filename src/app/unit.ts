@@ -6,4 +6,5 @@ export class Unit {
   make: string;
   createdAt: Date;
   deletedAt: Date;
+  active: boolean;
 }

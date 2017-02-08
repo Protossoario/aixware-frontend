@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 
 import { environment } from '../environments/environment';
@@ -12,6 +12,7 @@ import { Unit } from './unit';
 export class UnitService {
   private unitStore: Unit[];
   private unitSource: BehaviorSubject<Unit[]>;
+  private statusesSource: Subject<any>;
 
   constructor(
     private http: Http,
@@ -19,6 +20,8 @@ export class UnitService {
   ) {
     this.unitStore = [];
     this.unitSource = new BehaviorSubject<Unit[]>([]);
+    this.statusesSource = new Subject<any>();
+    this.statusesSource.delay(5000).subscribe(this.loadAllStatuses.bind(this));
   }
 
   get units(): Observable<Unit[]> {
@@ -34,17 +37,42 @@ export class UnitService {
       .map((response: Response) => response.json().data)
       .catch(this.errorHandler);
   }
+
+  loadAllStatuses() {
+    this.getAllStatuses().subscribe((statuses) => this.statusesSource.next(statuses));
+  }
   
   loadAll() {
+    Observable.combineLatest(this.getAllUnits(), this.statusesSource, (units, statuses) => {
+      for (let index in units) {
+        const unit = units[index];
+        const lastCreatedAt = statuses.find((status) => status._id === unit._id);
+        let timeDiffInSeconds = Date.now() - Date.parse(lastCreatedAt) / 1000;
+        units[index].active = timeDiffInSeconds > 5;
+      }
+      return units;
+    }).subscribe((units) => {
+      console.log('Live from New York, it\'s unit status!');
+      this.unitStore = units;
+      this.unitSource.next(units);
+    })
+    this.loadAllStatuses();
+  }
+
+  getAllUnits(): Observable<any> {
     let headers = new Headers({ 'x-access-token': this.authService.token });
     let options = new RequestOptions({ headers: headers });
-    this.http.get(environment.apiURL + '/units', options)
-      .map((response: Response) => response.json().data)
-      .catch(this.errorHandler)
-      .subscribe((units) => {
-        this.unitStore = units;
-        this.unitSource.next(units);
-      });
+    return this.http.get(environment.apiURL + '/units', options)
+      .map((res) => res.json().data)
+      .catch(this.errorHandler);
+  }
+
+  getAllStatuses(): Observable<any> {
+    let headers = new Headers({ 'x-access-token': this.authService.token });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(environment.apiURL + '/units/last-statuses', options)
+      .map((res) => res.json().data)
+      .catch(this.errorHandler);
   }
 
   create(unit: Unit): Observable<any> {
@@ -61,7 +89,7 @@ export class UnitService {
       .catch(this.errorHandler);
   }
 
-  errorHandler(err: Response | any) {
+  errorHandler(err: Response | any): Observable<any> {
     let errMsg: string;
     if (err instanceof Response) {
       const body = err.json() || '';

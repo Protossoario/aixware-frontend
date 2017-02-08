@@ -4,6 +4,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { Unit } from '../unit';
 import { UnitService } from '../unit.service';
+import { UnitFilterPipe } from '../unit-filter.pipe';
 
 @Component({
   selector: 'app-unit-list',

@@ -4,3 +4,15 @@
   flex: 1 1 auto;
   min-height: 100%;
 }
+
+.unit-list-heading {
+  margin: 0;
+  padding-left: 8px;
+  padding-top: 22px;
+  padding-bottom: 8px;
+  color: #fdfdfd;
+}
+
+.unit-list-item-text {
+  font-family: "Roboto Thin", "Helvetica Neue", sans-serif;
+}

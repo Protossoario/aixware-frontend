@@ -31,6 +31,7 @@ import { UnitStatusComponent } from './unit-status/unit-status.component';
 import { UnitListComponent } from './unit-list/unit-list.component';
 import { UnitAddComponent } from './unit-add/unit-add.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UnitFilterPipe } from './unit-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     UnitStatusComponent,
     UnitListComponent,
     UnitAddComponent,
-    NavbarComponent
+    NavbarComponent,
+    UnitFilterPipe
   ],
   imports: [
     BrowserModule,

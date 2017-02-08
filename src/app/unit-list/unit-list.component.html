@@ -1,8 +1,16 @@
 <div class="unit-list">
+  <h3 class="unit-list-heading">Unidades activas</h3>
   <md-list>
-    <md-list-item *ngFor="let unit of units">
+    <md-list-item *ngFor="let unit of (units | unitFilter:true)">
       <a md-button (click)="onSelect(unit)" [disabled]="unit._id === selectedId">{{ unit.name }}</a>
     </md-list-item>
-    <md-list-item *ngIf="units.length === 0">No hay unidades registradas.</md-list-item>
+    <md-list-item *ngIf="(units | unitFilter:true).length === 0"><p class="unit-list-item-text">No hay unidades activas.</p></md-list-item>
+  </md-list>
+  <h3 class="unit-list-heading">Unidades inactivas</h3>
+  <md-list>
+    <md-list-item *ngFor="let unit of (units | unitFilter:false)">
+      <a md-button (click)="onSelect(unit)" [disabled]="unit._id === selectedId">{{ unit.name }}</a>
+    </md-list-item>
+    <md-list-item *ngIf="(units | unitFilter:false).length === 0"><p class="unit-list-item-text">No hay unidades inactivas.</p></md-list-item>
   </md-list>
 </div>

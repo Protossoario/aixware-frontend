@@ -27,7 +27,7 @@ export class UnitStatusService {
     return pollSubject.asObservable();
   }
 
-  getStatus(unitId) {
+  getStatus(unitId): Observable<any> {
     let headers = new Headers({ 'x-access-token': this.authService.token });
     let options = new RequestOptions({ headers: headers });
     return this.http.get(environment.apiURL + '/units/' + unitId + '/status', options);
