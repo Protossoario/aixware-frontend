@@ -33,6 +33,7 @@ import { UnitAddComponent } from './unit-add/unit-add.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UnitFilterPipe } from './unit-filter.pipe';
 import { UserAddComponent } from './user-add/user-add.component';
+import { UnitEditComponent } from './unit-edit/unit-edit.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { UserAddComponent } from './user-add/user-add.component';
     UnitAddComponent,
     NavbarComponent,
     UnitFilterPipe,
-    UserAddComponent
+    UserAddComponent,
+    UnitEditComponent
   ],
   imports: [
     BrowserModule,

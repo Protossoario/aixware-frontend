@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../user';
 import { Unit } from '../unit';
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit {
   units: Unit[] = [];
 
   constructor(
+    private router: Router,
     private userService: UserService,
     private unitService: UnitService) { }
 
@@ -27,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   onEdit(unit: Unit) {
-    // TODO
+    this.router.navigate([ '/unidad', unit._id, 'editar' ]);
   }
 
   onDelete(unit: Unit) {
