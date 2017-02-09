@@ -16,6 +16,7 @@ import { AuthGuard } from './auth.guard';
 
 // Services
 import { AuthService } from './auth.service';
+import { GeocodeService } from './geocode.service';
 import { UserService } from './user.service';
 import { UnitService } from './unit.service';
 import { UnitStatusService } from './unit-status.service';
@@ -55,13 +56,15 @@ import { UnitEditComponent } from './unit-edit/unit-edit.component';
     MaterialModule.forRoot(),
     ChartsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCEc9SudbT0HNHF1oHsIcsubDo0jbvwgLs'
+      apiKey: 'AIzaSyCEc9SudbT0HNHF1oHsIcsubDo0jbvwgLs',
+      libraries: ["places"]
     }),
     routing
   ],
   providers: [
     AuthGuard,
     AuthService,
+    GeocodeService,
     UserService,
     UnitService,
     UnitStatusService

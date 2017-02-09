@@ -4,6 +4,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { environment } from '../../environments/environment';
 
+import { GeocodeService } from '../geocode.service';
 import { UnitStatusService } from '../unit-status.service';
 import { UnitService } from '../unit.service';
 import { UnitStatus } from '../unit-status';
@@ -15,13 +16,15 @@ import { Unit } from '../unit';
   styleUrls: ['./unit-status.component.css']
 })
 export class UnitStatusComponent implements OnInit {
-  statusData: UnitStatus;
-  statusPicturePath: string;
+  address = '';
   chartData: number[]; 
   chartLabels: Array<any>;
+  statusData: UnitStatus;
+  statusPicturePath: string;
   unit: Unit;
 
   constructor(
+    private geocodeService: GeocodeService,
     private route: ActivatedRoute,
     private router: Router,
     private unitStatusService: UnitStatusService,
@@ -39,11 +42,11 @@ export class UnitStatusComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .switchMap((params: Params) => this.unitService.getUnit(params['id']) )
-      .flatMap((unit) => {
+      .flatMap((unit: Unit) => {
         this.unit = unit;
         return this.unitStatusService.getLiveStatusData(unit._id)
       })
-      .subscribe(data => {
+      .flatMap((data: UnitStatus) => {
         if (!this.statusData || data._id !== this.statusData._id) {
           this.chartData.push(data.acceleration);
           this.chartLabels.push(this.formatDate(new Date(data.createdAt)));
@@ -57,7 +60,11 @@ export class UnitStatusComponent implements OnInit {
           this.statusPicturePath = environment.baseURL + data.picture.url;
           this.statusData = data;
         }
-    });
+        return this.geocodeService.getAddress(data.latitude, data.longitude);
+      })
+      .subscribe((address: string) => {
+        this.address = address;
+      });
   }
 
 }
