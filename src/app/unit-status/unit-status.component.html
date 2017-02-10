@@ -1,5 +1,5 @@
 <h4 class="unit-name" *ngIf="unit">{{ unit.name }}</h4>
-<div class="unit-status-data" *ngIf="statusData">
+<div class="unit-status-data" *ngIf="displayStatus">
   <div class="flex-row">
     <div class="status-picture-container">
       <img *ngIf="statusPicturePath" [src]="statusPicturePath" class="status-picture" />
@@ -22,3 +22,4 @@
     </div>
   </div>
 </div>
+<p>{{ errMsg }}</p>
