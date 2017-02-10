@@ -38,6 +38,10 @@ export class UnitService {
       .catch(this.errorHandler);
   }
 
+  sortByName(u1: Unit, u2: Unit) {
+    return u1.name.localeCompare(u2.name);
+  }
+
   loadAllStatuses() {
     this.getAllStatuses().subscribe((statuses) => this.statusesSource.next(statuses));
   }
@@ -52,7 +56,7 @@ export class UnitService {
       }
       return units;
     }).subscribe((units) => {
-      this.unitStore = units;
+      this.unitStore = units.sort(this.sortByName);
       this.unitSource.next(units);
     })
     this.loadAllStatuses();
@@ -81,6 +85,7 @@ export class UnitService {
       .map((response: Response) => {
         const unit = response.json().data;
         this.unitStore.push(unit);
+        this.unitStore = this.unitStore.sort(this.sortByName);
         this.unitSource.next(this.unitStore);
         return Observable.empty();
       })
@@ -95,6 +100,7 @@ export class UnitService {
         const unit = response.json().data;
         const index = this.unitStore.findIndex(u => u._id === unit._id);
         this.unitStore[index] = unit;
+        this.unitStore = this.unitStore.sort(this.sortByName);
         this.unitSource.next(this.unitStore);
         return Observable.empty();
       })
