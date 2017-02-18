@@ -1,0 +1,45 @@
+<div class="login-root">
+  <img src="/assets/login-background.jpg" class="background">
+  <div class="login-title">
+    <h2>AIXWARE</h2>
+    <h2>Asistente para monitoreo de fatiga</h2>
+  </div>
+  <div class="login-form">
+    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+      <div *ngIf="error" class="form-error">{{error}}</div>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="text" name="username" placeholder="Usuario" color="primary"
+            [disabled]="loading"
+            [(ngModel)]="model.username" #username="ngModel" required />
+        </md-input-container>
+        <p *ngIf="f.submitted && !loading && !username.valid" class="form-error">Se require el nombre de usuario o correo.</p>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="password" name="password" placeholder="Contraseña"
+            [disabled]="loading"
+            [(ngModel)]="model.password" #password="ngModel" required />
+        </md-input-container>
+        <p *ngIf="f.submitted && !loading && !password.valid" class="form-error">Se requiere la contraseña.</p>
+      </div>
+      <button md-button [disabled]="loading" color="accent">Entrar</button>
+    </form>
+  </div>
+  <div class="login-footer-container">
+    <img src="/assets/login-logo.png" class="login-logo">
+    <div class="login-footer">
+      <div class="login-footer-left">
+        <h4>Desarrollado por</h4>
+        <h4>AIXWARE Technologies</h4>
+        <p>We build smart embedded systems</p>
+      </div>
+      <div class="login-footer-right">
+        <a md-button>Aviso de privacidad</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="spinner" *ngIf="loading">
+  <md-spinner></md-spinner>
+</div>

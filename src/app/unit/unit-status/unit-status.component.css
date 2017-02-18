@@ -1,0 +1,46 @@
+.unit-name {
+  margin-top: 40px;
+  margin-bottom: 33px;
+  margin-left: 23px;
+  font-family: "Roboto Thin", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.sebm-google-map-container {
+  width: 450px;
+  height: 240px;
+}
+
+.status-picture-container {
+  margin-left: 59px;
+  margin-right: 43px;
+}
+
+.status-picture {
+  width: 320px;
+  height: 240px;
+}
+
+.status-acceleration {
+  display: flex;
+  flex-direction: column;
+  margin-top: 45px;
+  margin-left: 59px;
+}
+
+.status-acceleration-heading {
+  font-family: "Roboto Light";
+  font-size: 18px;
+  margin: 0;
+}
+
+.status-acceleration-chart {
+  margin-top: 5px;
+  width: 350px;
+  height: 200px;
+}

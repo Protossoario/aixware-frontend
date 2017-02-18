@@ -1,73 +1,27 @@
 // Angular dependencies
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
-
-// Chart.js module for Angular2
-import { ChartsModule } from 'ng2-charts';
-
-// Google Maps for Angular2
-import { AgmCoreModule } from 'angular2-google-maps/core';
-
-// Guards
-import { AuthGuard } from './auth.guard';
-
-// Services
-import { AuthService } from './auth.service';
-import { GeocodeService } from './geocode.service';
-import { UserService } from './user.service';
-import { UnitService } from './unit.service';
-import { UnitStatusService } from './unit-status.service';
 
 // Routes
-import { routing } from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
 
-// Components
+// Feature modules
+import { UnitModule } from './unit/unit.module';
+import { UserModule } from './user/user.module';
+
+// Core module
+import { CoreModule } from './core/core.module';
+
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { UnitStatusComponent } from './unit-status/unit-status.component';
-import { UnitListComponent } from './unit-list/unit-list.component';
-import { UnitAddComponent } from './unit-add/unit-add.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { UnitFilterPipe } from './unit-filter.pipe';
-import { UserAddComponent } from './user-add/user-add.component';
-import { UnitEditComponent } from './unit-edit/unit-edit.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    UnitStatusComponent,
-    UnitListComponent,
-    UnitAddComponent,
-    NavbarComponent,
-    UnitFilterPipe,
-    UserAddComponent,
-    UnitEditComponent
-  ],
+  declarations: [AppComponent],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    HttpModule,
-    MaterialModule.forRoot(),
-    ChartsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCEc9SudbT0HNHF1oHsIcsubDo0jbvwgLs',
-      libraries: ["places"]
-    }),
-    routing
-  ],
-  providers: [
-    AuthGuard,
-    AuthService,
-    GeocodeService,
-    UserService,
-    UnitService,
-    UnitStatusService
+    CoreModule,
+    UnitModule,
+    UserModule
   ],
   bootstrap: [AppComponent]
 })

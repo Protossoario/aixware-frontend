@@ -1,16 +1,16 @@
 @import '~@angular/material/core/theming/all-theme';
-@include md-core();
-$primary: md-palette($md-red, 900);
-$accent:  md-palette($md-grey, 800, 500, 900);
-$warn:    md-palette($md-amber, 600);
-$theme:   md-dark-theme($primary, $accent, $warn);
+@include mat-core();
+$primary: mat-palette($mat-red, 900);
+$accent:  mat-palette($mat-grey, 800, 500, 900);
+$warn:    mat-palette($mat-amber, 600);
+$theme:   mat-dark-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
 
 .navbar-dark-theme {
-  $nav-primary: md-palette($md-grey, 800);
-  $nav-accent:  md-palette($md-grey, 700, 400, 900);
-  $nav-warn:    md-palette($md-deep-orange);
-  $dark-theme:  md-dark-theme($nav-primary, $nav-accent, $nav-warn);
+  $nav-primary: mat-palette($mat-grey, 800);
+  $nav-accent:  mat-palette($mat-grey, 700, 400, 900);
+  $nav-warn:    mat-palette($mat-deep-orange);
+  $dark-theme:  mat-dark-theme($nav-primary, $nav-accent, $nav-warn);
   @include angular-material-theme($dark-theme);
 }
 
@@ -18,14 +18,14 @@ $theme:   md-dark-theme($primary, $accent, $warn);
   $main-primary:  $primary;
   $main-accent:   $accent;
   $main-warn:     $warn;
-  $main-theme:    md-light-theme($main-primary, $main-accent, $main-warn);
+  $main-theme:    mat-light-theme($main-primary, $main-accent, $main-warn);
   @include angular-material-theme($main-theme);
 }
 
 .login-form {
-  $login-primary: md-palette($md-red, 900, 700, A700);
-  $login-accent:  md-palette($md-grey, 300, 50, 600);
-  $login-warn:    md-palette($md-red);
-  $login-theme:   md-dark-theme($login-accent, $login-accent, $login-warn);
+  $login-primary: mat-palette($mat-red, 900, 700, A700);
+  $login-accent:  mat-palette($mat-grey, 300, 50, 600);
+  $login-warn:    mat-palette($mat-red);
+  $login-theme:   mat-dark-theme($login-accent, $login-accent, $login-warn);
   @include angular-material-theme($login-theme);
 }

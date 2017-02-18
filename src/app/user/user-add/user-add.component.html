@@ -1,0 +1,58 @@
+<div [hidden]="submitted" class="user-add-form">
+  <h4>Agregar usuario</h4>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="form-group">
+      <p *ngIf="errMsg" class="form-error">{{ errMsg }}</p>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="text" id="firstName" placeholder="Nombre(s)" required
+            [(ngModel)]="model.firstName" name="firstName" #firstName="ngModel">
+        </md-input-container>
+        <div [hidden]="firstName.valid || firstName.pristine" class="form-error">
+          El nombre es requerido.
+        </div>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="text" id="lastName" placeholder="Apellido(s)" required
+            [(ngModel)]="model.lastName" name="lastName" #lastName="ngModel">
+        </md-input-container>
+        <div [hidden]="lastName.valid || lastName.pristine" class="form-error">
+          El apellido es requerido.
+        </div>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="text" id="email" placeholder="Correo electrónico" required
+            [(ngModel)]="model.email" name="email" #email="ngModel">
+        </md-input-container>
+        <div [hidden]="email.valid || email.pristine" class="form-error">
+          El correo es requerido.
+        </div>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="password" id="password" placeholder="Contraseña" required
+            [(ngModel)]="model.password" name="password" #password="ngModel">
+        </md-input-container>
+        <div [hidden]="password.valid || password.pristine" class="form-error">
+          La contraseña es requerida.
+        </div>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="password" id="confirmPassword" placeholder="Confirmar contraseña" required
+            [(ngModel)]="model.confirmPassword" name="confirmPassword" #confirmPassword="ngModel">
+        </md-input-container>
+        <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="form-error">
+          Por favor confirme su contraseña.
+        </div>
+      </div>
+      <button md-raised-button type="submit" color="primary"
+        [disabled]="!userForm.form.valid">Agregar</button>
+    </div>
+  </form>
+</div>
+<div class="spinner" [hidden]="!submitted">
+  <md-spinner></md-spinner>
+</div>

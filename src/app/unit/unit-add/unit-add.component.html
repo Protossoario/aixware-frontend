@@ -1,0 +1,43 @@
+<div [hidden]="submitted" class="unit-add-form">
+  <h4>Agregar unidad</h4>
+  <form (ngSubmit)="onSubmit()" #unitForm="ngForm">
+    <div class="form-group">
+      <p *ngIf="errMsg" class="form-error">{{ errMsg }}</p>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="text" id="name" placeholder="Nombre" required
+            [(ngModel)]="model.name" name="name" #name="ngModel">
+        </md-input-container>
+        <div [hidden]="name.valid || name.pristine" class="form-error">
+          El nombre es requerido.
+        </div>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="text" id="licensePlate" placeholder="Placas" required
+            [(ngModel)]="model.licensePlate" name="licensePlate" #licensePlate="ngModel">
+        </md-input-container>
+        <div [hidden]="licensePlate.valid || licensePlate.pristine" class="form-error">
+          Las placas son requeridas.
+        </div>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="text" id="year" placeholder="Año de la unidad"
+            [(ngModel)]="model.year" name="year" #year="ngModel">
+        </md-input-container>
+      </div>
+      <div class="form-input">
+        <md-input-container>
+          <input mdInput type="text" id="make" placeholder="Modelo"
+            [(ngModel)]="model.make" name="make" #make="ngModel">
+        </md-input-container>
+      </div>
+      <button md-raised-button type="submit" color="primary"
+        [disabled]="!unitForm.form.valid">Agregar</button>
+    </div>
+  </form>
+</div>
+<div class="spinner" [hidden]="!submitted">
+  <md-spinner></md-spinner>
+</div>
